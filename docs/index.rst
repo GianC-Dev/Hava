@@ -1,4 +1,4 @@
-***Hava -- İlk Türkçe Programlama Dili (Python İle Kodlandı)***
+***Hava***
 
 Hava, Python ile kodlanmış olup kolay syntax yapısı ve türkçe olması ile
 size kolaylık getirecek bir dildir. Bazı örnek kodlar;
@@ -18,8 +18,8 @@ Fonksiyonlar
 ::
 
     Hava > fonksiyon test1():: hava_isim = "hava" :
-    Hava > test1()
-    Hava > yaz(hava_isim)
+    Hava > test1():
+    Hava > yaz(hava_isim):
 
 **Sonuç:**
 
@@ -41,7 +41,7 @@ Koşullar
 
 ::
 
-    Hava > i = 0
+    Hava > i = 0:
     Hava > eğer i == 0 :: hava_isim = "hava" değilse:: hava_isim = "hava değil":
 
 **Sonuç:**

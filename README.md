@@ -9,8 +9,8 @@ Bazı örnek kodlar;
 
 ````
 Hava > fonksiyon test1():: hava_isim = "hava" :
-Hava > test1()
-Hava > yaz(hava_isim)
+Hava > test1():
+Hava > yaz(hava_isim):
 ````
 
 **Sonuç**
@@ -23,7 +23,7 @@ hava
 
 **Kod**
 ````
-Hava > i = 0
+Hava > i = 0:
 Hava > döngü i içinde 10 :: yaz("hava") :
 ````
 
@@ -48,7 +48,7 @@ hava
 **Kod**
 
 ````
-Hava > i = 0
+Hava > i = 0:
 Hava > eğer i == 0 :: hava_isim = "hava" değilse:: hava_isim = "hava değil":
 ````
 

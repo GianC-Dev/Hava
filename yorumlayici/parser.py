@@ -116,7 +116,7 @@ class HavaParser(Parser):
 	"""
 	Döngü Syntaxı Ayarlanıyor.
 	
-	Syntax: döngü 'değişken' içinde 'sayı' sonra 'fonksiyon'
+	Syntax: döngü 'değişken' içinde 'sayı' sonra 'fonksiyon' :
 	
 	:return str
 	"""
@@ -164,89 +164,89 @@ class HavaParser(Parser):
 	"""
 	Yazdırma fonksiyonu
 	
-	Syntax: yaz('yazı')
+	Syntax: yaz('yazı'):
 	
 	:return None
 	
 	"""
 	
-	@_('PRINT "(" STRING ")"')
+	@_('PRINT "(" STRING ")" FINISH_PREFIX')
 	def expr(self, p):
 		return 'print', p.STRING
 	
 	"""
 	Fonksiyon çağırma methodu
 	
-	Syntax: 'fonksiyon_ismi'()
+	Syntax: 'fonksiyon_ismi'():
 	
 	"""
 	
-	@_('NAME "(" ")"')
+	@_('NAME "(" ")" FINISH_PREFIX')
 	def statement(self, p):
 		return 'fun_call', p.NAME
 	
 	"""
 	Bir tür koşul.
 
-	Syntax: 'değişken' == 'yazı'
+	Syntax: 'değişken' == 'yazı':
 
 	:returns True, False
 
 	"""
 	
-	@_('NAME EQEQ STRING')
+	@_('NAME EQEQ STRING FINISH_PREFIX')
 	def condition(self, p):
 		return 'condition_eqeq_var_str', p.NAME, p.STRING
 	
 	"""
 	Bir tür koşul.
 	
-	Syntax: 'sayı' == 'sayı'
+	Syntax: 'sayı' == 'sayı':
 	
 	:returns True, False
 	
 	"""
 	
-	@_('expr EQEQ expr')
+	@_('expr EQEQ expr FINISH_PREFIX')
 	def condition(self, p):
 		return 'condition_eqeq', p.expr0, p.expr1
 	
 	"""
 	Bir tür koşul.
 	
-	Syntax: 'değişken' == 'sayı'
+	Syntax: 'değişken' == 'sayı':
 	
 	:returns True, False
 	
 	"""
 	
-	@_('NAME EQEQ expr')
+	@_('NAME EQEQ expr FINISH_PREFIX')
 	def condition(self, p):
 		return 'condition_eqeq_var_int', p.NAME, p.expr
 	
 	"""
 	Bir tür koşul.
 	
-	Syntax: 'yazı' == 'sayı'
+	Syntax: 'yazı' == 'sayı':
 	
 	:returns True, False
 	
 	"""
 	
-	@_('STRING EQEQ expr')
+	@_('STRING EQEQ expr FINISH_PREFIX')
 	def condition(self, p):
 		return 'condition_eqeq', p.STRING, p.expr
 	
 	"""
 	Bir tür koşul.
 	
-	Syntax: 'yazı' == 'yazı'
+	Syntax: 'yazı' == 'yazı':
 	
 	:returns True, False
 	
 	"""
 	
-	@_('STRING EQEQ STRING')
+	@_('STRING EQEQ STRING FINISH_PREFIX')
 	def condition(self, p):
 		return 'condition_eqeq', p.STRING0, p.STRING1
 	
@@ -263,20 +263,20 @@ class HavaParser(Parser):
 	"""
 	Yeni bir değişken ayarlamaya yarayan method. (Sayı için)
 	
-	Syntax: 'değişken ismi' = 'sayı'
+	Syntax: 'değişken ismi' = 'sayı':
 	"""
 	
-	@_('NAME EQ expr')
+	@_('NAME EQ expr FINISH_PREFIX')
 	def var_assign(self, p):
 		return 'var_assign', p.NAME, p.expr
 	
 	"""
 	Yeni bir değişken ayarlamaya yarayan method. (String için)
 
-	Syntax: 'değişken ismi' = '"yazi"'
+	Syntax: 'değişken ismi' = '"yazi"':
 	"""
 	
-	@_('NAME EQ STRING')
+	@_('NAME EQ STRING FINISH_PREFIX')
 	def var_assign(self, p):
 		return 'var_assign', p.NAME, p.STRING
 	
@@ -293,84 +293,84 @@ class HavaParser(Parser):
 	"""
 	Sayıları toplamaya yarayan method.
 	
-	Syntax: 'sayı' + 'sayı'
+	Syntax: 'sayı' + 'sayı':
 	
 	:return int
 	"""
 	
-	@_('expr "+" expr')
+	@_('expr "+" expr FINISH_PREFIX')
 	def expr(self, p):
 		return 'add', p.expr0, p.expr1
 	
 	"""
 	Sayıları çıkarmaya yarayan method.
 
-	Syntax: 'sayı' - 'sayı'
+	Syntax: 'sayı' - 'sayı':
 
 	:return int
 	"""
 	
-	@_('expr "-" expr')
+	@_('expr "-" expr FINISH_PREFIX')
 	def expr(self, p):
 		return 'sub', p.expr0, p.expr1
 	
 	"""
 	Sayıları çarpmaya yarayan method.
 
-	Syntax: 'sayı' * 'sayı'
+	Syntax: 'sayı' * 'sayı':
 
 	:return int
 	"""
 	
-	@_('expr "*" expr')
+	@_('expr "*" expr FINISH_PREFIX')
 	def expr(self, p):
 		return 'mul', p.expr0, p.expr1
 	
 	"""
 	Sayıları bölmeye yarayan method.
 
-	Syntax: 'sayı' / 'sayı'
+	Syntax: 'sayı' / 'sayı':
 
 	:return int
 	"""
 	
-	@_('expr "/" expr')
+	@_('expr "/" expr FINISH_PREFIX')
 	def expr(self, p):
 		return 'div', p.expr0, p.expr1
 	
 	"""
 	Sayıları arttırmaya yarayan method.
 
-	Syntax: 'değişken' += 'sayı'
+	Syntax: 'değişken' += 'sayı':
 
 	:return int
 	"""
 	
-	@_('NAME PLUSEQ expr')
+	@_('NAME PLUSEQ expr FINISH_PREFIX')
 	def expr(self, p):
 		return 'plus_eq', p.NAME, p.expr
 	
 	"""
 	Yazıları arttırmaya yarayan method.
 
-	Syntax: 'değişken' += 'yazı'
+	Syntax: 'değişken' += 'yazı':
 
 	:return int
 	"""
 	
-	@_('NAME PLUSEQ STRING')
+	@_('NAME PLUSEQ STRING FINISH_PREFIX')
 	def expr(self, p):
 		return 'plus_eq', p.NAME, p.STRING
 	
 	"""
 	Sayıları azaltmaya yarayan method.
 
-	Syntax: 'değişken' -= 'sayı'
+	Syntax: 'değişken' -= 'sayı':
 
 	:return int
 	"""
 	
-	@_('NAME MINUSEQ expr')
+	@_('NAME MINUSEQ expr FINISH_PREFIX')
 	def expr(self, p):
 		return 'minus_eq', p.NAME, p.expr
 	
